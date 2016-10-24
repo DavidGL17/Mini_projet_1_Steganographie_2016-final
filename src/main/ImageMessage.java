@@ -171,7 +171,9 @@ public final class ImageMessage {
      * @return a HxW int array
      */
     public static int[][] toRGB(boolean[][] image) {
-        //TODO: implement me!
+    	int imageGray[][] = new int [image.length][image[0].length];
+    	int imageRGB[][] = new int [image.length][image[0].length];
+    	
         return null;
     }
 

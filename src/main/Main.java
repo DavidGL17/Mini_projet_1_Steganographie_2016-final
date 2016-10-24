@@ -6,7 +6,7 @@ package main;
 public final class Main {
 
 	public static void main(String[] args) {
-		// pour séparer chaque couleurpjfoasihfoaihfoai
+		// pour séparer chaque couleur
 		int image[][] = Helper.read("images/AdeleBlochBauer/AdeleBlochBauer.png");
 //		Helper.show(image, "AdeleBlochBauer");
 
