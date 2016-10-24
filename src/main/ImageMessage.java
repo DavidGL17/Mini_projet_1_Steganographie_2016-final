@@ -140,8 +140,13 @@ public final class ImageMessage {
      * @see #getRGB(float)
      */
     public static int[][] toRGB(int[][] gray) {
-        //TODO: implement me!
-        return null;
+    	int[][] imageRGB = new int [gray.length][gray[0].length];
+    	for (int i=0;i<gray.length;++i){
+    		for(int j=0;j<gray[i].length;++j){
+    		imageRGB[i][j]=getRGB(gray[i][j]);	
+    		}
+    	}
+        return imageRGB;
     }
 
     /**
