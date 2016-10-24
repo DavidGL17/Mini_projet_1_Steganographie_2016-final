@@ -98,8 +98,8 @@ public final class ImageMessage {
      * @see #getGray
      */
     public static int getRGB(int gray) {
-        //TODO: implement me!
-        return 0;
+    	int RGB = gray*3;
+        return RGB;
     }
 
 
@@ -110,7 +110,7 @@ public final class ImageMessage {
     * and encoding of white otherwise
     */
     public static int getRGB(boolean value) {
-        //TODO: implement me!
+    	
         return 0;
     }
 
@@ -153,7 +153,7 @@ public final class ImageMessage {
      * Converts grayscale image to a black and white image using a given threshold
      * @param gray a HxW int array
      * @param threshold an integer threshold
-     * @return a HxW int array sfdsfdsfdsf
+     * @return a HxW int array 
      */
     public static boolean[][] toBW(int[][] gray, int threshold) {
     	boolean[][] imageBW = new boolean [gray.length][gray[0].length];
@@ -171,10 +171,13 @@ public final class ImageMessage {
      * @return a HxW int array
      */
     public static int[][] toRGB(boolean[][] image) {
-    	int imageGray[][] = new int [image.length][image[0].length];
-    	int imageRGB[][] = new int [image.length][image[0].length];
-    	
-        return null;
+    	int[][] imageRGB = new int [image.length][image[0].length];
+    	for(int i=0;i<image.length;++i){
+    		for(int j=0;j<image[i].length;++j){
+    			imageRGB[i][j] = getRGB(image[i][j]);
+    		}
+    	}
+        return imageRGB;
     }
 
     /*
