@@ -87,8 +87,8 @@ public final class ImageMessage {
      * @see #getBlue
      */
     public static int getRGB(int red, int green, int blue) {
-        //TODO: implement me!
-        return 0;
+    	int RGB = (red<<16)+(green<<8)+(blue);
+        return RGB;
     }
 
     /**
