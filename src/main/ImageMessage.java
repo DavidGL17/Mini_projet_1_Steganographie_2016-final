@@ -110,8 +110,11 @@ public final class ImageMessage {
     * and encoding of white otherwise
     */
     public static int getRGB(boolean value) {
-    	
-        return 0;
+    	if (value == true){
+    		return 0;
+    	} else {
+    		return 1;
+    	}
     }
 
 
@@ -174,7 +177,8 @@ public final class ImageMessage {
     	int[][] imageRGB = new int [image.length][image[0].length];
     	for(int i=0;i<image.length;++i){
     		for(int j=0;j<image[i].length;++j){
-    			imageRGB[i][j] = getRGB(image[i][j]);
+    			int gray = getRGB(image[i][j]);
+    			imageRGB[i][j]=getRGB(gray);
     		}
     	}
         return imageRGB;
