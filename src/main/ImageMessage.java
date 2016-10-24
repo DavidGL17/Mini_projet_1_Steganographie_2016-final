@@ -123,8 +123,13 @@ public final class ImageMessage {
      * @see #getGray
      */
     public static int[][] toGray(int[][] image) {
-        //TODO: implement me!
-        return null;
+    	int imageGray[][] = new int [image.length][image[0].length];
+    	for (int i=0;i<image.length;++i){
+    		for (int j=0;j<image[i].length;++j){
+    			imageGray[i][j]=getGray(image[i][j]);
+    		}
+    	}
+    	return imageGray;
     }
 
     /**
@@ -146,8 +151,13 @@ public final class ImageMessage {
      * @return a HxW int array
      */
     public static boolean[][] toBW(int[][] gray, int threshold) {
-        //TODO: implement me!
-        return null;
+    	boolean[][] imageBW = new boolean [gray.length][gray[0].length];
+    	for (int i=0;i<gray.length;++i){
+    		for (int j=0;j<gray[i].length;++j){
+    			imageBW[i][j] = getBW(gray[i][j],threshold);
+    		}
+    	}
+        return imageBW;
     }
 
     /**
