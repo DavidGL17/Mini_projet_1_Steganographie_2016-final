@@ -148,7 +148,7 @@ public final class ImageMessage {
      * Converts grayscale image to a black and white image using a given threshold
      * @param gray a HxW int array
      * @param threshold an integer threshold
-     * @return a HxW int array
+     * @return a HxW int array sfdsfdsfdsf
      */
     public static boolean[][] toBW(int[][] gray, int threshold) {
     	boolean[][] imageBW = new boolean [gray.length][gray[0].length];
