@@ -69,8 +69,11 @@ public final class ImageMessage {
      * @return true if gray is greater or equal to threshold, false otherwise
      */
     public static boolean getBW(int gray, int threshold) {
-        //TODO: implement me!
-        return false;
+    	if (gray<threshold){
+    		return false;
+    	} else {
+    		return true;
+    	}
     }
 
     /**
