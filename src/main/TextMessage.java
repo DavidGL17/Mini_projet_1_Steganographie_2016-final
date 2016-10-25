@@ -15,8 +15,13 @@ public class TextMessage {
      * @return A boolean array corresponding to {@code value}'s {@code bits}-bit binary representation
      */
     public static boolean[] intToBitArray(int value, int bits) {
-        //TODO: implement me!
-        return null;
+    	String binaryString = "";
+    	char c = value;
+		int m = (int)c;
+		binaryString += Integer.toBinaryString(m);   
+				
+    	
+    	return null;
     }
 
     /**
@@ -37,11 +42,12 @@ public class TextMessage {
      */
     public static boolean[] stringToBitArray(String message) {
     	String binaryString = "";
+		boolean[] binaryTab = new boolean [binaryString.length()];
+
     	for (int i = 0; i < message.length(); ++i){
     		char c = message.charAt(i);
     		int m = (int)c;
     		binaryString += Integer.toBinaryString(m);    	
-    		boolean[] binaryTab = new boolean [binaryString.length()];
     		for (int j = 0; j < binaryString.length(); ++j){
     			binaryTab[j] = binaryString.charAt(j);
     		
