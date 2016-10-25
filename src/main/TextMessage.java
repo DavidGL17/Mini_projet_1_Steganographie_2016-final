@@ -15,13 +15,15 @@ public class TextMessage {
      * @return A boolean array corresponding to {@code value}'s {@code bits}-bit binary representation
      */
     public static boolean[] intToBitArray(int value, int bits) {
-    	String binaryString = "";
-    	char c = value;
-		int m = (int)c;
-		binaryString += Integer.toBinaryString(m);   
-				
-    	
-    	return null;
+		boolean[] binary = new boolean [bits];
+    	int m = value;
+		for (int i = 0; i < bits; ++i){
+	    String s = Integer.toBinaryString(m);
+		binary[i] += s;   
+		
+		}
+		
+    	return binary;
     }
 
     /**
