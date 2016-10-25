@@ -17,9 +17,13 @@ public class TextMessage {
     public static boolean[] intToBitArray(int value, int bits) {
 		boolean[] binary = new boolean [bits];
     	int m = value;
-		for (int i = 0; i < bits; ++i){
 	    String s = Integer.toBinaryString(m);
-		binary[i] += s;   
+    	for (int i = bits - 1; i >= 0; --i){
+    		if (s.charAt(i) == 1){
+    			binary[i] = true;
+    		} else {
+    			binary[i] = false;
+    		}
 		
 		}
 		
