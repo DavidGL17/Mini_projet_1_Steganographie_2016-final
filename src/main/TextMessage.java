@@ -41,20 +41,18 @@ public class TextMessage {
      * @return A boolean array corresponding to the String's binary representation
      */
     public static boolean[] stringToBitArray(String message) {
-    	String binaryString = "";
-		boolean[] binaryTab = new boolean [binaryString.length()];
-
+		boolean[] binaryTabMessage = new boolean [8*message.length()];
+		int bites = 0;
     	for (int i = 0; i < message.length(); ++i){
     		char c = message.charAt(i);
-    		int m = (int)c;
-    		binaryString += Integer.toBinaryString(m);    	
-    		for (int j = 0; j < binaryString.length(); ++j){
-    			binaryTab[j] = binaryString.charAt(j);
-    		
-    			
+    		int CharInt = (int)c;
+    		boolean[] CharI = intToBitArray(CharInt, 8);
+    		for (int j = 0; j < CharI.length; ++j){
+    			binaryTabMessage[bites] = CharI[j];
+    			++bites;
     		}
     	}	
-    	return binaryTab;
+    	return binaryTabMessage;
     }
 
     /**
