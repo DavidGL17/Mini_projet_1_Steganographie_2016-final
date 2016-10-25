@@ -25,8 +25,9 @@ public class TextMessage {
      * @return The integer that the array represented
      */
     public static int bitArrayToInt(boolean[] bitArray) {
-        //TODO: implement me!
-        return 0;
+    	
+    	
+    	return 0;
     }
 
     /**
@@ -35,8 +36,19 @@ public class TextMessage {
      * @return A boolean array corresponding to the String's binary representation
      */
     public static boolean[] stringToBitArray(String message) {
-        //TODO: implement me!
-        return null;
+    	String binaryString = "";
+    	for (int i = 0; i < message.length(); ++i){
+    		char c = message.charAt(i);
+    		int m = (int)c;
+    		binaryString += Integer.toBinaryString(m);    	
+    		boolean[] binaryTab = new boolean [binaryString.length()];
+    		for (int j = 0; j < binaryString.length(); ++j){
+    			binaryTab[j] = binaryString.charAt(j);
+    		
+    			
+    		}
+    	}	
+    	return binaryTab;
     }
 
     /**
