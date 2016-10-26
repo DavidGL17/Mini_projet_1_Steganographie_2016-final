@@ -147,8 +147,9 @@ public class Steganography {
      * @see Steganography#embedSpiralBitArray(int[][], boolean[])
      */
     public static int[][] embedSpiralImage(int[][] cover, boolean[][] bwImage) {
-        //TODO: implement me!
-        return null;
+    	boolean[] message = ImageMessage.bwImageToBitArray(bwImage);
+    	int[][] coverHidden = embedSpiralBitArray(cover, message);
+        return coverHidden;
     }
 
     /**
@@ -170,8 +171,21 @@ public class Steganography {
      * @return A <b>copy</b> of {@code cover} with {@code message}'s values embedded in a spiral fashion in the LSB layer
      */
     public static int[][] embedSpiralBitArray(int[][] cover, boolean[] message) {
-        //TODO: implement me!
 		assert(Utils.isCoverLargeEnough(cover, message)); // example of how to use assertions
+		for (int reduction =0;reduction<cover.length/2;++reduction){
+			for (int i =0+reduction;i<cover[0].length-reduction;++i){
+				
+			}
+			for (int j = 1+reduction;j<cover.length-reduction;++j){
+				
+			}
+			for (int k = cover[0].length-2-reduction;k>=0+reduction;--k){
+				
+			}
+			for (int l = cover.length-2-reduction;l>0+reduction;--l){
+				
+			}
+		}
         return null;
     }
 

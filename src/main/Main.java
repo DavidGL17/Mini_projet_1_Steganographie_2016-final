@@ -26,7 +26,9 @@ public final class Main {
 //			}
 //			System.out.println();
 //		}
-		System.out.println(0x00000001);
+//		String s = Integer.toBinaryString(0x11111111);
+		System.out.println(Character.SIZE);
+		System.out.println(0x00000011);
 	}
 
 }
