@@ -16,15 +16,15 @@ public class TextMessage {
      */
     public static boolean[] intToBitArray(int value, int bits) {
 		boolean[] binary = new boolean [bits];
-    	int m = value;
-	    String s = Integer.toBinaryString(m);
-    	for (int i = bits - 1; i >= 0; --i){
-    		if (s.charAt(i) == 1){
+    	for (int i = 0; i < bits; ++i){
+    		int lastbit = (value & 0x00000001);
+    		if (lastbit == 1){
     			binary[i] = true;
     		} else {
     			binary[i] = false;
-    		}		
-		}
+    		}
+    		value >>= 1;
+    	}
     	return binary;
     }
 
@@ -75,9 +75,17 @@ public class TextMessage {
      */
     public static String bitArrayToString(boolean[] bitArray) {
     	String binaryString = "";
-    	boolean[] binaryTab
-    	for (int i = 0; i < 16; ++i){
-    	binaryString += bitArray[i];
+    	int convert = 0;
+    	char c = 0;
+    	boolean[] binaryTab = new boolean [10];
+    	for (int j = 0 ; j < bitArray.length; j += 8){		
+    			for (int i = 0; i < 8; ++i){
+    			binaryTab[i] = bitArray[j + i];
+    			convert = bitArrayToInt(binaryTab);
+    			c = (char)convert;
+    			binaryString += c;
+    			
+    			}
     	}
     	return binaryString;
     }
