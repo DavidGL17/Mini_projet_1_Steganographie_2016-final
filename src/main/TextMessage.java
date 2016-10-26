@@ -53,12 +53,12 @@ public class TextMessage {
      * @return A boolean array corresponding to the String's binary representation
      */
     public static boolean[] stringToBitArray(String message) {
-		boolean[] binaryTabMessage = new boolean [8 * message.length()];
+		boolean[] binaryTabMessage = new boolean [Character.SIZE * message.length()];
 		int bits = 0;
     	for (int i = 0; i < message.length(); ++i){
     		char c = message.charAt(i);
     		int CharInt = (int)c;
-    		boolean[] CharI = intToBitArray(CharInt, 8);
+    		boolean[] CharI = intToBitArray(CharInt, Character.SIZE);
     		for (int j = 0; j < CharI.length; ++j){
     			binaryTabMessage[bits] = CharI[j];
     			++bits;
@@ -76,16 +76,14 @@ public class TextMessage {
     public static String bitArrayToString(boolean[] bitArray) {
     	String binaryString = "";
     	int convert = 0;
-    	char c = ' ';
-    	boolean[] binaryTab = new boolean [10];
-    	for (int j = 0 ; j < bitArray.length; j += 8){		
+    	for (int j = 0 ; j < bitArray.length; j += 8){
+        	boolean[] binaryTab = new boolean [10];
     			for (int i = 0; i < 8; ++i){
-    			binaryTab[i] = bitArray[j + i];
-    			convert = bitArrayToInt(binaryTab);
-    			c = (char)convert;
-    			binaryString += c;
-    			
+    			binaryTab[i] = bitArray[j + i];    			
     			}
+    		convert = bitArrayToInt(binaryTab);
+    		char c = (char)convert;
+    		binaryString += c;
     	}
     	return binaryString;
     }

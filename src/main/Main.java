@@ -26,7 +26,9 @@ public final class Main {
 //			}
 //			System.out.println();
 //		}
-		
+		int cover[][] = Helper.read("images/ThePersistenceOfMemory/ThePersistenceOfMemory.png");
+		int image[][] = Helper.read("images/ThePersistenceOfMemory/smiley");
+		image = ImageMessage.toGray(image);
 	}
 
 }
