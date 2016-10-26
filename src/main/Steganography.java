@@ -70,7 +70,13 @@ public class Steganography {
      * @return The image extracted from the LSB layer of {@code cover}
      */
     public static boolean[][] revealBWImage(int[][] cover) {
-        return null;
+    	boolean[][] messageHidden = new boolean [cover.length][cover[0].length];
+    	for(int i=0;i<cover.length;++i){
+    		for (int j=0;j<cover[i].length;++j){
+    			messageHidden[i][j]=getLSB(cover[i][j]);
+    		}
+    	}
+        return messageHidden;
     }
 
     /*
