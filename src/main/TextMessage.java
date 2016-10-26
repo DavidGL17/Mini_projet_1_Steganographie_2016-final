@@ -23,10 +23,8 @@ public class TextMessage {
     			binary[i] = true;
     		} else {
     			binary[i] = false;
-    		}
-		
+    		}		
 		}
-		
     	return binary;
     }
 
@@ -36,8 +34,15 @@ public class TextMessage {
      * @return The integer that the array represented
      */
     public static int bitArrayToInt(boolean[] bitArray) {
-    	
-    	
+    	final int bolTrue = 0x00000001, bolFalse = 0xFFFFFFFE;
+    	int[] entier = new int[bitArray.length];
+    	for (int i = bitArray.length -1 ; i >= 0; --i){
+    		if (bitArray[i]){
+    			entier[i] = 1;
+    		} else {
+    			entier[i] = 0;
+    		}
+    	}
     	return 0;
     }
 
@@ -47,12 +52,12 @@ public class TextMessage {
      * @return A boolean array corresponding to the String's binary representation
      */
     public static boolean[] stringToBitArray(String message) {
-		boolean[] binaryTabMessage = new boolean [8*message.length()];
+		boolean[] binaryTabMessage = new boolean [Character.SIZE * message.length()];
 		int bites = 0;
     	for (int i = 0; i < message.length(); ++i){
     		char c = message.charAt(i);
     		int CharInt = (int)c;
-    		boolean[] CharI = intToBitArray(CharInt, 8);
+    		boolean[] CharI = intToBitArray(CharInt, Character.SIZE);
     		for (int j = 0; j < CharI.length; ++j){
     			binaryTabMessage[bites] = CharI[j];
     			++bites;
