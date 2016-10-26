@@ -23,6 +23,8 @@ public class Steganography {
     	int newValue = 0;
     	if (m){
     		newValue = (value | 0x00000001);
+    	} else {
+    		newValue = (value & 0xFFFFFFFE);
     	}
         return newValue;
     }
@@ -172,21 +174,27 @@ public class Steganography {
      */
     public static int[][] embedSpiralBitArray(int[][] cover, boolean[] message) {
 		assert(Utils.isCoverLargeEnough(cover, message)); // example of how to use assertions
+		int[][] coverHidden = new int [cover.length][cover[0].length];
+		int m = 0;
 		for (int reduction =0;reduction<cover.length/2;++reduction){
 			for (int i =0+reduction;i<cover[0].length-reduction;++i){
-				
+				coverHidden[reduction][i] = embedInLSB(cover[reduction][i], message[m]);
+				++m;
 			}
 			for (int j = 1+reduction;j<cover.length-reduction;++j){
-				
+				coverHidden[j][cover[0].length-1-reduction] = embedInLSB(cover[j][cover[0].length-1-reduction], message[m]);
+				++m;
 			}
 			for (int k = cover[0].length-2-reduction;k>=0+reduction;--k){
-				
+				coverHidden[cover.length-1-reduction][k] = embedInLSB(cover[cover.length-1-reduction][k], message[m]);
+				++m;
 			}
 			for (int l = cover.length-2-reduction;l>0+reduction;--l){
-				
+				coverHidden[l][reduction] = embedInLSB(cover[l][reduction], message[m]);
+				++m;
 			}
 		}
-        return null;
+        return coverHidden;
     }
 
     /**
