@@ -53,15 +53,15 @@ public class TextMessage {
      * @return A boolean array corresponding to the String's binary representation
      */
     public static boolean[] stringToBitArray(String message) {
-		boolean[] binaryTabMessage = new boolean [Character.SIZE * message.length()];
-		int bites = 0;
+		boolean[] binaryTabMessage = new boolean [8 * message.length()];
+		int bits = 0;
     	for (int i = 0; i < message.length(); ++i){
     		char c = message.charAt(i);
     		int CharInt = (int)c;
-    		boolean[] CharI = intToBitArray(CharInt, Character.SIZE);
+    		boolean[] CharI = intToBitArray(CharInt, 8);
     		for (int j = 0; j < CharI.length; ++j){
-    			binaryTabMessage[bites] = CharI[j];
-    			++bites;
+    			binaryTabMessage[bits] = CharI[j];
+    			++bits;
     		}
     	}	
     	return binaryTabMessage;
@@ -74,8 +74,12 @@ public class TextMessage {
      * @see TextMessage#stringToBitArray(String)
      */
     public static String bitArrayToString(boolean[] bitArray) {
-        //TODO: implement me!
-        return null;
+    	String binaryString = "";
+    	boolean[] binaryTab
+    	for (int i = 0; i < 16; ++i){
+    	binaryString += bitArray[i];
+    	}
+    	return binaryString;
     }
 
 }
