@@ -76,7 +76,7 @@ public class TextMessage {
     public static String bitArrayToString(boolean[] bitArray) {
     	String binaryString = "";
     	int convert = 0;
-    	char c = 0;
+    	char c = ' ';
     	boolean[] binaryTab = new boolean [10];
     	for (int j = 0 ; j < bitArray.length; j += 8){		
     			for (int i = 0; i < 8; ++i){
