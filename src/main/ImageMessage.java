@@ -196,7 +196,7 @@ public final class ImageMessage {
      * @see ImageMessage#bitArrayToImage(boolean[])
      */
     public static boolean[] bwImageToBitArray(boolean[][] bwImage) {
-        //TODO: implement me!
+    	boolean[] bitArray = 
         return null;
     }
 

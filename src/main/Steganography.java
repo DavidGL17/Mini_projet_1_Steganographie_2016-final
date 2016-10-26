@@ -20,8 +20,11 @@ public class Steganography {
      * @return An int corresponding to {@code value} with {@code m} inserted into its LSB
      */
     public static int embedInLSB(int value, boolean m) {
-        //TODO: implement me!
-        return 0;
+    	int newValue = 0;
+    	if (m){
+    		newValue = (value | 0x00000001);
+    	}
+        return newValue;
     }
 
     /**
@@ -30,8 +33,12 @@ public class Steganography {
      * @return A boolean corresponding to the value of {@code value}'s LSB
      */
     public static boolean getLSB(int value) {
-        //TODO: implement me!
-        return false;
+    	value = (value & 0x00000001);
+    	if (value == 0x00000001){
+    		return true;
+    	} else {
+            return false;
+    	}
     }
 
     /*
@@ -44,8 +51,17 @@ public class Steganography {
      * @return A <b>copy</b> of {@code cover} with {@code message}'s pixel values embedded in a linear fashion in the LSB layer
      */
     public static int[][] embedBWImage(int[][] cover, boolean[][] message) {
-        //TODO: implement me!
-        return null;
+    	int[][] coverHidden = new int [cover.length][cover[0].length];
+    	for (int i=0;i<coverHidden.length;++i){
+    			for(int j=0;j<coverHidden[0].length;++j){
+    				if (j<message[0].length&&(i<message.length)){
+    					coverHidden[i][j] = embedInLSB(cover[i][j], message[i][j]);
+    				} else {
+    					coverHidden[i][j] = cover[i][j];
+    				}
+    			}
+    	}
+        return coverHidden;
     }
 
     /**
@@ -54,7 +70,6 @@ public class Steganography {
      * @return The image extracted from the LSB layer of {@code cover}
      */
     public static boolean[][] revealBWImage(int[][] cover) {
-        //TODO: implement me!
         return null;
     }
 
