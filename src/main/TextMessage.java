@@ -35,15 +35,16 @@ public class TextMessage {
      */
     public static int bitArrayToInt(boolean[] bitArray) {
     	final int bolTrue = 0x00000001, bolFalse = 0xFFFFFFFE;
-    	int[] entier = new int[bitArray.length];
+    	int value = 0;
     	for (int i = bitArray.length -1 ; i >= 0; --i){
+    		value <<= 1;
     		if (bitArray[i]){
-    			entier[i] = 1;
+    			value |= bolTrue;
     		} else {
-    			entier[i] = 0;
+    			value &= bolFalse ;
     		}
     	}
-    	return 0;
+    	return value;
     }
 
     /**
