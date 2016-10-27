@@ -95,8 +95,15 @@ public class Steganography {
      * @return A <b>copy</b> of {@code cover} with {@code message}'s values embedded in a linear fashion in the LSB layer
      */
     public static int[][] embedBitArray(int[][] cover, boolean[] message) {
-        //TODO: implement me!
-        return null;
+    	int LSB = 0;
+    	int[][] coverHidden = new int [cover.length][cover[0].length];
+    	for (int i = 0; i < cover.length; ++i){
+    		for (int j = 0; j < cover.length; ++i){
+    			LSB = embedInLSB(cover[i][j], message[j]);
+    			coverHidden[i][j] = LSB;	
+    		}	
+    	}
+    	return coverHidden;
     }
 
     /**
@@ -105,8 +112,9 @@ public class Steganography {
      * @return The bit array extracted from the LSB layer of {@code cover}
      */
     public static boolean[] revealBitArray(int[][] cover) {
-        //TODO: implement me!
-        return null;
+
+    	
+    	return null;
     }
 
     /**
