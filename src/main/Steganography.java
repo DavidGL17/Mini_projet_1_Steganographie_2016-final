@@ -162,8 +162,9 @@ public class Steganography {
      * @see Steganography#revealSpiralBitArray(int[][])
      */
     public static boolean[][] revealSpiralImage(int[][] cover) {
-        //TODO: implement me!
-        return null;
+    	boolean[] message = revealSpiralBitArray(cover);
+    	boolean[][] imageBW = ImageMessage.bitArrayToImage(message);
+        return imageBW;
     }
 
     /**
@@ -213,7 +214,28 @@ public class Steganography {
      * @return The bit array extracted from the LSB layer of {@code cover}
      */
     public static boolean[] revealSpiralBitArray(int[][] hidden) {
-        //TODO: implement me!
+    	int hauteur =0, largeur = 0, verif = 0;
+    	for (int i=0;i<32&(i<hidden[0].length);++i){
+    		boolean LSB = getLSB(hidden[0][i]);
+    		if (LSB){
+    			hauteur = (hauteur | 0b00000000_00000000_00000000_00000001);
+    		} else {
+    			hauteur = (hauteur & 0b11111111_11111111_11111111_11111110);
+    		}
+    		++verif;
+    	}
+    	if (verif<32){
+    		for (int i = 0;verif<32;++verif, ++i){
+    			boolean LSB = getLSB(hidden[i][hidden[0].length-1]);
+        		if (LSB){
+        			hauteur = (hauteur | 0b00000000_00000000_00000000_00000001);
+        		} else {
+        			hauteur = (hauteur & 0b11111111_11111111_11111111_11111110);
+        		}
+        		
+    		}
+    	}
+    	boolean[] message = new boolean [][];
         return null;
     }
 
