@@ -136,10 +136,8 @@ public class Steganography {
      * @see Steganography#embedBitArray(int[][], boolean[])
      */
     public static int[][] embedText(int[][] cover, String message) {
-    	boolean[] embedMessage = new boolean[cover.length]; 
-    	int[][] hiddenMessage = new int[cover.length][cover[0].length];		
-    	embedMessage = TextMessage.stringToBitArray(message);
-    	hiddenMessage = embedBitArray(cover, embedMessage);			
+    	boolean[] bitMessage = TextMessage.stringToBitArray(message);
+    	int[][] hiddenMessage = embedBitArray(cover, bitMessage);			
     	return hiddenMessage;
     }
 
