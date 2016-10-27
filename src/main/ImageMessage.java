@@ -98,7 +98,7 @@ public final class ImageMessage {
      * @see #getGray
      */
     public static int getRGB(int gray) {
-    	int RGB = gray*3;
+    	int RGB = ((0x000000ff&gray)<<16)+((0x000000ff & gray)<<8)+(0x000000ff&gray);
         return RGB;
     }
 
@@ -111,9 +111,9 @@ public final class ImageMessage {
     */
     public static int getRGB(boolean value) {
     	if (value == true){
-    		return 0;
+    		return 255;
     	} else {
-    		return 1;
+    		return 0;
     	}
     }
 
@@ -199,7 +199,7 @@ public final class ImageMessage {
     	boolean[] bitArray = new boolean [(bwImage.length*bwImage[0].length)+8*2];
     	int hauteur = bwImage.length;
     	int largeur = bwImage.length;
-    	for (int i=0;i<8;++i){
+    	for (int i=0;i<32;++i){
     		int hauteurLastBit = (hauteur & 0x00000001);
     		if (hauteurLastBit == 1){
     			bitArray[i] = true;
@@ -208,7 +208,7 @@ public final class ImageMessage {
     		}
     		hauteur<<=hauteur;
     	}
-    	for (int i=8;i<16;++i){
+    	for (int i=32;i<64;++i){
     		int largeurLastBit = (largeur & 0x00000001);
     		if (largeurLastBit == 1){
     			bitArray[i] = true;
@@ -217,7 +217,7 @@ public final class ImageMessage {
     		}
     		largeur<<=largeur;
     	}
-    	int k = 15;
+    	int k = 63;
     	for (int i=0;i<bwImage.length;++i){
     		for (int j=0;j<bwImage[0].length;++j){
     			++k;

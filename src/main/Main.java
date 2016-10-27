@@ -27,8 +27,16 @@ public final class Main {
 //			System.out.println();
 //		}
 		int cover[][] = Helper.read("images/ThePersistenceOfMemory/ThePersistenceOfMemory.png");
-		int image[][] = Helper.read("images/ThePersistenceOfMemory/smiley");
+		int[][] image = Helper.read("images/ThePersistenceOfMemory/smiley.png");
+		Helper.show(cover, "image");
+		Helper.show(image, "image à cacher");
 		image = ImageMessage.toGray(image);
+		boolean[][] imageBW = ImageMessage.toBW(image, 127);
+		int[][] coverHidden = Steganography.embedBWImage(cover, imageBW);
+		Helper.show(coverHidden, "CoverHidden");
+		boolean[][] imageReveleeBW = Steganography.revealBWImage(coverHidden);
+		int[][] ImageRevelee = ImageMessage.toRGB(imageReveleeBW);
+		Helper.show(ImageRevelee, "ImageRevelee");
 	}
 
 }
