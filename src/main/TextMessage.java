@@ -17,7 +17,7 @@ public class TextMessage {
     public static boolean[] intToBitArray(int value, int bits) {
 		boolean[] binary = new boolean [bits];
     	for (int i = 0; i < bits; ++i){
-    		int lastbit = (value & 0x00000001);
+    		int lastbit = (value & 0b00000000_00000001);
     		if (lastbit == 1){
     			binary[i] = true;
     		} else {
@@ -34,7 +34,7 @@ public class TextMessage {
      * @return The integer that the array represented
      */
     public static int bitArrayToInt(boolean[] bitArray) {
-    	final int bolTrue = 0x00000001, bolFalse = 0xFFFFFFFE;
+    	final int bolTrue = 0b00000000_00000001, bolFalse = 0b11111111_11111110;
     	int value = 0;
     	for (int i = bitArray.length -1 ; i >= 0; --i){
     		value <<= 1;
@@ -76,8 +76,8 @@ public class TextMessage {
     public static String bitArrayToString(boolean[] bitArray) {
     	String binaryString = "";
     	int convert = 0;
-    	for (int j = 0 ; j < bitArray.length; j += 8){
-        	boolean[] binaryTab = new boolean [10];
+    	for (int j = 0 ; j < bitArray.length; j += Character.SIZE){
+        	boolean[] binaryTab = new boolean [Character.SIZE];
     			for (int i = 0; i < 8; ++i){
     			binaryTab[i] = bitArray[j + i];    			
     			}
