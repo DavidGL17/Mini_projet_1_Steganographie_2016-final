@@ -95,12 +95,16 @@ public class Steganography {
      * @return A <b>copy</b> of {@code cover} with {@code message}'s values embedded in a linear fashion in the LSB layer
      */
     public static int[][] embedBitArray(int[][] cover, boolean[] message) {
-    	int LSB = 0;
+    	int m = 0;
     	int[][] coverHidden = new int [cover.length][cover[0].length];
     	for (int i = 0; i < cover.length; ++i){
-    		for (int j = 0; j < cover.length; ++i){
-    			LSB = embedInLSB(cover[i][j], message[j]);
-    			coverHidden[i][j] = LSB;	
+    		for (int j = 0; j < cover.length; ++j){
+    			if (m < message.length){
+    				coverHidden[i][j]  = embedInLSB(cover[i][j], message[m]);
+    				++m;
+    			} else {
+					coverHidden[i][j] = cover[i][j];
+    			}
     		}	
     	}
     	return coverHidden;
@@ -112,9 +116,15 @@ public class Steganography {
      * @return The bit array extracted from the LSB layer of {@code cover}
      */
     public static boolean[] revealBitArray(int[][] cover) {
-
-    	
-    	return null;
+    	int m = 0;
+    	boolean[] reveal =  new boolean [cover.length*cover[0].length];  
+    	for (int i = 0; i < cover.length; ++i){
+    		for (int j = 0; j < cover[0].length; ++j){
+    			reveal[m] = getLSB(cover [i][j]);
+    			++m;
+    		}
+    	}
+    	return reveal;
     }
 
     /**
@@ -126,8 +136,10 @@ public class Steganography {
      * @see Steganography#embedBitArray(int[][], boolean[])
      */
     public static int[][] embedText(int[][] cover, String message) {
-        //TODO: implement me!
-        return null;
+    	boolean[][] embedMessage = new boolean[][] 
+    			
+    			
+    	return null;
     }
 
     /**
