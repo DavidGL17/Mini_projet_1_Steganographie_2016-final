@@ -148,10 +148,9 @@ public class Steganography {
      * @see TextMessage#bitArrayToString(boolean[])
      */
     public static String revealText(int[][] cover) {
-    	boolean[] reveal = new boolean [cover.length];
-    	reveal = revealBitArray
-    	
-    	return null;
+    	boolean[] toreveal = revealBitArray(cover);
+    	String revealed = TextMessage.bitArrayToString(toreveal);
+    	return revealed;
     }
 
     /*
