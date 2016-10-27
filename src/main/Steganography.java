@@ -136,13 +136,11 @@ public class Steganography {
      * @see Steganography#embedBitArray(int[][], boolean[])
      */
     public static int[][] embedText(int[][] cover, String message) {
-    	boolean[][] embedMessage = new boolean[cover.length][cover[0].length]; 
-    			for (int i = 0; i < cover.length; ++i){
-    					embedMessage[i] = TextMessage.stringToBitArray(message);
-    				}
-    			}
-    			
-    	return null;
+    	boolean[] embedMessage = new boolean[cover.length]; 
+    	int[][] hiddenMessage = new int[cover.length][cover[0].length];		
+    	embedMessage = TextMessage.stringToBitArray(message);
+    	hiddenMessage = embedBitArray(cover, embedMessage);			
+    	return hiddenMessage;
     }
 
     /**
@@ -152,8 +150,10 @@ public class Steganography {
      * @see TextMessage#bitArrayToString(boolean[])
      */
     public static String revealText(int[][] cover) {
-        //TODO: implement me!
-        return null;
+    	boolean[] reveal = new boolean [cover.length];
+    	reveal = revealBitArray
+    	
+    	return null;
     }
 
     /*
