@@ -103,7 +103,7 @@ public class Steganography {
     	int m = 0;
     	int[][] coverHidden = new int [cover.length][cover[0].length];
     	for (int i = 0; i < cover.length; ++i){
-    		for (int j = 0; j < cover.length; ++j){
+    		for (int j = 0; j < cover[0].length; ++j){
     			if (m < message.length){
     				coverHidden[i][j]  = embedInLSB(cover[i][j], message[m]);
     				++m;
