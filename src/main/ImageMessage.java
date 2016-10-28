@@ -207,22 +207,21 @@ public final class ImageMessage {
     	int hauteur = bwImage.length;
     	int largeur = bwImage.length;
     	for (int i=0;i<32;++i){
-    		int hauteurLastBit = (hauteur & 0x00000001);
+    		int hauteurLastBit = (hauteur & 0b00000000_00000000_00000000_000000001);
     		if (hauteurLastBit == 1){
     			bitArray[i] = true;
     		} else {
     			bitArray[i] = false;
     		}
-    		hauteur<<=hauteur;
     	}
     	for (int i=32;i<64;++i){
-    		int largeurLastBit = (largeur & 0x00000001);
+    		int largeurLastBit = (largeur & 0b00000000_00000000_00000000_000000001);
     		if (largeurLastBit == 1){
     			bitArray[i] = true;
     		} else {
     			bitArray[i] = false;
     		}
-    		largeur<<=largeur;
+    		largeur<<= 1;
     	}
     	int k = 63;
     	for (int i=0;i<bwImage.length;++i){
@@ -241,21 +240,21 @@ public final class ImageMessage {
      * @see ImageMessage#bwImageToBitArray(boolean[][])
      */
     public static boolean[][] bitArrayToImage(boolean[] bitArray) {
-    	int hauteur = 0x00000000, largeur = 0x00000000;
+    	int hauteur = 0b00000000_00000000_00000000_00000000, largeur = 0b00000000_00000000_00000000_00000000;
     	for (int i =0;i<32;++i){
-    		hauteur <<= hauteur;
+    		hauteur = hauteur<< 1;
     		if (bitArray[i]){
-    			hauteur |= 0x00000001;
+    			hauteur |= 0b00000000_00000000_00000000_000000001;
     		} else {
-    			hauteur &= 0x11111110;
+    			hauteur &= 0b11111111_11111111_11111111_11111110;
     		}
     	}
     	for (int i =32;i<64;++i){
-    		largeur <<= largeur;
+    		largeur =largeur << 1;
     		if (bitArray[i]){
-    			largeur |= 0x00000001;
+    			largeur |= 0b00000000_00000000_00000000_000000001;
     		} else {
-    			largeur &= 0x11111110;
+    			largeur &= 0b11111111_11111111_11111111_11111110;
     		}
     	}
     	boolean[][] bwImage = new boolean[hauteur][largeur];

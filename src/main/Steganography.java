@@ -234,29 +234,35 @@ public class Steganography {
      * @return The bit array extracted from the LSB layer of {@code cover}
      */
     public static boolean[] revealSpiralBitArray(int[][] hidden) {
-    	int hauteur =0, largeur = 0, verif = 0;
-    	for (int i=0;i<32&(i<hidden[0].length);++i){
-    		boolean LSB = getLSB(hidden[0][i]);
-    		if (LSB){
-    			hauteur = (hauteur | 0b00000000_00000000_00000000_00000001);
-    		} else {
-    			hauteur = (hauteur & 0b11111111_11111111_11111111_11111110);
-    		}
-    		++verif;
-    	}
-    	if (verif<32){
-    		for (int i = 0;verif<32;++verif, ++i){
-    			boolean LSB = getLSB(hidden[i][hidden[0].length-1]);
-        		if (LSB){
-        			hauteur = (hauteur | 0b00000000_00000000_00000000_00000001);
-        		} else {
-        			hauteur = (hauteur & 0b11111111_11111111_11111111_11111110);
-        		}
-        		
-    		}
-    	}
-    	boolean[] message = new boolean [][];
-        return null;
+    	boolean[] bitArray = new boolean[hidden.length*hidden[0].length];
+    	int m = 0;
+		for (int reduction =0;reduction<hidden.length/2;++reduction){
+			for (int i =0+reduction;i<hidden[0].length-reduction;++i){
+				if (m<bitArray.length){
+					bitArray[m]= getLSB(hidden[reduction][i]);
+					++m;
+				}
+			}
+			for (int j = 1+reduction;j<hidden.length-reduction;++j){
+				if (m<bitArray.length){
+					bitArray[m] = getLSB(hidden[j][hidden[0].length-1-reduction]);
+					++m;
+				}
+			}
+			for (int k = hidden[0].length-2-reduction;k>=0+reduction;--k){
+				if (m<bitArray.length){
+					bitArray[m] = getLSB(hidden[hidden.length-1-reduction][k]);
+					++m;
+				}
+			}
+			for (int l = hidden.length-2-reduction;l>0+reduction;--l){
+				if (m<bitArray.length){
+					bitArray[m] = getLSB(hidden[l][reduction]);
+					++m;
+				}
+			}
+		}
+        return bitArray;
     }
 
 }
