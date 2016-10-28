@@ -53,6 +53,11 @@ public class Steganography {
      * @return A <b>copy</b> of {@code cover} with {@code message}'s pixel values embedded in a linear fashion in the LSB layer
      */
     public static int[][] embedBWImage(int[][] cover, boolean[][] message) {
+    	boolean coverLargeEnough = Utils.isCoverLargeEnough(cover, message);
+    	if (!(coverLargeEnough)){
+    		System.out.println("L'image que vous vouliez cacher est plus grande que l'image sur l'aquelle voous vouliez la cacher");
+    		return cover;
+    	}
     	int[][] coverHidden = new int [cover.length][cover[0].length];
     	for (int i=0;i<coverHidden.length;++i){
     			for(int j=0;j<coverHidden[0].length;++j){

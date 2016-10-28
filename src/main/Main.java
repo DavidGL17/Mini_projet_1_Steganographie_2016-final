@@ -1,9 +1,11 @@
 package main;
+import java.util.Scanner;
 
 /**
  * @author
  */
 public final class Main {
+	private static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
 //		// pour séparer chaque couleur
@@ -26,17 +28,18 @@ public final class Main {
 //			}
 //			System.out.println();
 //		}
-		int cover[][] = Helper.read("images/ThePersistenceOfMemory/ThePersistenceOfMemory.png");
-		int[][] image = Helper.read("images/ThePersistenceOfMemory/smiley.png");
+			testsLineaires("images/AdeleBlochBauer/AdeleBlochBauer-small.png", "images/AdeleBlochBauer/AdeleBlochBauer.png");
+	}
+	public static void testsLineaires (String ImageOuCacher, String imageACacher){
+		int cover[][] = Helper.read(ImageOuCacher);
+		int[][] image = Helper.read(imageACacher);
 		Helper.show(cover, "image");
 		Helper.show(image, "image à cacher");
-		image = ImageMessage.toGray(image);
-		boolean[][] imageBW = ImageMessage.toBW(image, 127);
+		boolean[][] imageBW = ImageMessage.fromRGBtoBW(image,127);
 		int[][] coverHidden = Steganography.embedBWImage(cover, imageBW);
 		Helper.show(coverHidden, "CoverHidden");
 		boolean[][] imageReveleeBW = Steganography.revealBWImage(coverHidden);
 		int[][] ImageRevelee = ImageMessage.toRGB(imageReveleeBW);
 		Helper.show(ImageRevelee, "ImageRevelee");
 	}
-
 }
