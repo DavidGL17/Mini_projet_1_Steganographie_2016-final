@@ -55,8 +55,8 @@ public class Steganography {
     public static int[][] embedBWImage(int[][] cover, boolean[][] message) {
     	boolean coverLargeEnough = Utils.isCoverLargeEnough(cover, message);
     	if (!(coverLargeEnough)){
-    		System.out.println("L'image que vous vouliez cacher est plus grande que l'image sur l'aquelle voous vouliez la cacher");
-    		return cover;
+    		System.out.println("L'image que vous vouliez cacher est plus grande que l'image sur l'aquelle vous vouliez la cacher");
+    		System.exit(-1);;
     	}
     	int[][] coverHidden = new int [cover.length][cover[0].length];
     	for (int i=0;i<coverHidden.length;++i){
