@@ -110,10 +110,11 @@ public final class ImageMessage {
     * and encoding of white otherwise
     */
     public static int getRGB(boolean value) {
-    	if (value == true){
-    		return 255;
+    	int colour;
+    	if (value){
+    		return colour = 0x00FFFFFF;
     	} else {
-    		return 0;
+    		return colour = 0x00000000;
     	}
     }
 
@@ -206,25 +207,17 @@ public final class ImageMessage {
     	boolean[] bitArray = new boolean [(bwImage.length*bwImage[0].length)+32*2];
     	int hauteur = bwImage.length;
     	int largeur = bwImage[0].length;
-    	for (int i=0;i<32;++i){
-    		int hauteurLastBit = (hauteur & 0b00000000_00000000_00000000_000000001);
-    		if (hauteurLastBit == 1){
-    			bitArray[i] = true;
-    		} else {
-    			bitArray[i] = false;
-    		}
-    		hauteur >>=1;
+    	boolean[] hauteurBitArray = TextMessage.intToBitArray(hauteur, Integer.SIZE);
+    	int k = 0;
+    	for (int i=0;i<hauteurBitArray.length;++i){
+    		bitArray[k] = hauteurBitArray[i];
+    		++k;
     	}
-    	for (int i=32;i<64;++i){
-    		int largeurLastBit = (largeur & 0b00000000_00000000_00000000_000000001);
-    		if (largeurLastBit == 1){
-    			bitArray[i] = true;
-    		} else {
-    			bitArray[i] = false;
-    		}
-    		largeur>>= 1;
+    	boolean[] largeurBitArray = TextMessage.intToBitArray(largeur, Integer.SIZE);
+    	for (int i=0;i<largeurBitArray.length;++i){
+    		bitArray[k] = largeurBitArray[i];
+    		++k;
     	}
-    	int k = 63;
     	for (int i=0;i<bwImage.length;++i){
     		for (int j=0;j<bwImage[0].length;++j){
     			++k;
@@ -241,23 +234,13 @@ public final class ImageMessage {
      * @see ImageMessage#bwImageToBitArray(boolean[][])
      */
     public static boolean[][] bitArrayToImage(boolean[] bitArray) {
-    	int hauteur = 0b00000000_00000000_00000000_00000000, largeur = 0b00000000_00000000_00000000_00000000;
-    	for (int i =31;i>=0;--i){
-    		hauteur = hauteur<< 1;
-    		if (bitArray[i]){
-    			hauteur |= 0b00000000_00000000_00000000_000000001;
-    		} else {
-    			hauteur &= 0b11111111_11111111_11111111_11111110;
-    		}
+    	boolean[] hauteurBitArray = new boolean[Integer.SIZE];
+    	boolean[] largeurBitArray = new boolean[Integer.SIZE];
+    	for (int i=0;i<32;++i){
+    		hauteurBitArray[i] = bitArray[i];
+    		largeurBitArray[i] = bitArray[i+32];
     	}
-    	for (int i =63;i>=32;--i){
-    		largeur =largeur << 1;
-    		if (bitArray[i]){
-    			largeur |= 0b00000000_00000000_00000000_000000001;
-    		} else {
-    			largeur &= 0b11111111_11111111_11111111_11111110;
-    		}
-    	}
+    	int hauteur = TextMessage.bitArrayToInt(hauteurBitArray), largeur = TextMessage.bitArrayToInt(largeurBitArray);
     	boolean[][] bwImage = new boolean[hauteur][largeur];
     	int k = 63;
     	for (int i=0;i<hauteur;++i){

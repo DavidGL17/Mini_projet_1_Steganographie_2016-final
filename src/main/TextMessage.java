@@ -34,8 +34,8 @@ public class TextMessage {
      * @return The integer that the array represented
      */
     public static int bitArrayToInt(boolean[] bitArray) {
-    	final int bolTrue = 0b00000000_00000001, bolFalse = 0b11111111_11111110;
-    	int value = 0;
+    	final int bolTrue = 0b00000000_00000000_00000000_00000001, bolFalse = 0b11111111_11111111_11111111_11111110;
+    	int value = 0b00000000_00000000_00000000_00000000;
     	for (int i = bitArray.length -1 ; i >= 0; --i){
     		value <<= 1;
     		if (bitArray[i]){
