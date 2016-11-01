@@ -220,8 +220,8 @@ public final class ImageMessage {
     	}
     	for (int i=0;i<bwImage.length;++i){
     		for (int j=0;j<bwImage[0].length;++j){
-    			++k;
     			bitArray[k] = bwImage[i][j];
+    			++k;
     		}
     	}
         return bitArray;

@@ -78,7 +78,7 @@ public class TextMessage {
     	int convert = 0;
     	for (int j = 0 ; j < bitArray.length; j += Character.SIZE){
         	boolean[] binaryTab = new boolean [Character.SIZE];
-    			for (int i = 0; i < 8; ++i){
+    			for (int i = 0; i < 16&&((j+i)<bitArray.length); ++i){
     			binaryTab[i] = bitArray[j + i];    			
     			}
     		convert = bitArrayToInt(binaryTab);

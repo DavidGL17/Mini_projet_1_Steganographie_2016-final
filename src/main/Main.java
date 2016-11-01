@@ -28,11 +28,21 @@ public final class Main {
 //			}
 //			System.out.println();
 //		}
-			testsLineaires("images/AdeleBlochBauer/AdeleBlochBauer-small.png", "images/AdeleBlochBauer/AdeleBlochBauer.png");
+			testsLineaires("images/Image_HD_Test/b807c2282ab0a491bd5c5c1051c6d312_rP0kQjJ.png", "images/TheStarryNight/TheStarryNight.png");
 	}
 	public static void testsLineaires (String ImageOuCacher, String imageACacher){
 		int cover[][] = Helper.read(ImageOuCacher);
 		int[][] image = Helper.read(imageACacher);
+//		int[][] imageACacherGrande = new int[image.length][image[0].length*2];
+//		int l = 0;
+//		for (int m = 0;m<2;++m){
+//			for (int i = 0;i<image.length;++i){
+//				for (int j = 0+l;j<image[0].length+l;++j){
+//					imageACacherGrande[i][j] = image[i][j-l];
+//				}
+//			}
+//			l = image[0].length;
+//		}
 		Helper.show(cover, "image");
 		Helper.show(image, "image à cacher");
 		boolean[][] imageBW = ImageMessage.fromRGBtoBW(image,127);
