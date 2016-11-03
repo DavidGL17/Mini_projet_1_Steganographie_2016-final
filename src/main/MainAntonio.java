@@ -19,6 +19,6 @@ public final class MainAntonio {
 		int[][] imageHidden = Steganography.embedText(image, message);
 		Helper.show(imageHidden, "imageHidden");
 		String messageRevealed = Steganography.revealText(imageHidden);
-		System.out.println("Message caché : " + messageRevealed);
+		Helper.writeText("images/Stockage.txt", messageRevealed);
 	    }
 }
