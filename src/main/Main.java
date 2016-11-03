@@ -28,7 +28,13 @@ public final class Main {
 //			}
 //			System.out.println();
 //		}
-			testsLineaires("images/TheStarryNight/TheStarryNight.png", "images/Image_HD_Test/b807c2282ab0a491bd5c5c1051c6d312_rP0kQjJ.png");
+//			testsLineaires("images/TheStarryNight/TheStarryNight.png", "images/TheStarryNight/TheStarryNight.png");
+		int cover[][] = Helper.read("images/images100100.png");
+		String message = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+		System.out.println(message);
+		int[][] coverHidden = Steganography.embedText(cover, message);
+		String text = Steganography.revealText(coverHidden);
+		System.out.println(text);
 	}
 	public static void testsLineaires (String ImageOuCacher, String imageACacher){
 		int cover[][] = Helper.read(ImageOuCacher);
