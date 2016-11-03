@@ -31,9 +31,11 @@ public final class Main {
 //			testsLineaires("images/TheStarryNight/TheStarryNight.png", "images/TheStarryNight/TheStarryNight.png");
 		int cover[][] = Helper.read("images/images100100.png");
 		String message = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-		System.out.println(message);
+		System.out.println("message à encoder : "+message);
 		int[][] coverHidden = Steganography.embedText(cover, message);
-		String text = Steganography.revealText(coverHidden);
+		String texteTestTailleIdem = Steganography.revealText(coverHidden);
+		Helper.writeText("Textes/texteTestTailleIdem+1.txt", texteTestTailleIdem);
+		
 	}
 	public static void testsLineaires (String ImageOuCacher, String imageACacher){
 		int cover[][] = Helper.read(ImageOuCacher);
