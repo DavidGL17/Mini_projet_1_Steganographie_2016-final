@@ -34,7 +34,6 @@ public final class Main {
 		System.out.println(message);
 		int[][] coverHidden = Steganography.embedText(cover, message);
 		String text = Steganography.revealText(coverHidden);
-		System.out.println(text);
 	}
 	public static void testsLineaires (String ImageOuCacher, String imageACacher){
 		int cover[][] = Helper.read(ImageOuCacher);
