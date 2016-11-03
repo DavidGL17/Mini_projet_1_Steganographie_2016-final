@@ -28,7 +28,7 @@ public final class Main {
 //			}
 //			System.out.println();
 //		}
-			testsLineaires("images/Image_HD_Test/b807c2282ab0a491bd5c5c1051c6d312_rP0kQjJ.png", "images/TheStarryNight/TheStarryNight.png");
+			testsLineaires("images/TheStarryNight/TheStarryNight.png", "images/Image_HD_Test/b807c2282ab0a491bd5c5c1051c6d312_rP0kQjJ.png");
 	}
 	public static void testsLineaires (String ImageOuCacher, String imageACacher){
 		int cover[][] = Helper.read(ImageOuCacher);
@@ -45,11 +45,17 @@ public final class Main {
 //		}
 		Helper.show(cover, "image");
 		Helper.show(image, "image à cacher");
-		boolean[][] imageBW = ImageMessage.fromRGBtoBW(image,127);
+		boolean[][] imageBW = fromRGBtoBW(image,127);
 		int[][] coverHidden = Steganography.embedBWImage(cover, imageBW);
 		Helper.show(coverHidden, "CoverHidden");
 		boolean[][] imageReveleeBW = Steganography.revealBWImage(coverHidden);
 		int[][] ImageRevelee = ImageMessage.toRGB(imageReveleeBW);
 		Helper.show(ImageRevelee, "ImageRevelee");
 	}
+	//Methode permettant de passer d'une image en couleur à une image en noir blanc
+    public static boolean[][] fromRGBtoBW(int[][] image, int threshold){
+    	int[][] gray = ImageMessage.toGray(image);
+    	boolean[][] imageBW = ImageMessage.toBW(gray,threshold);
+    	return imageBW;
+    }
 }

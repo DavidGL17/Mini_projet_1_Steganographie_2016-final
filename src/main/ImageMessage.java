@@ -185,13 +185,6 @@ public final class ImageMessage {
         return imageRGB;
     }
     
-    //Methode permettant de passer d'une image en couleur à une image en noir blanc
-    public static boolean[][] fromRGBtoBW(int[][] image, int threshold){
-    	int[][] gray = toGray(image);
-    	boolean[][] imageBW = toBW(gray,threshold);
-    	return imageBW;
-    }
-
     /*
      * ********************************************
      * Part 3: prepare image message for spiral encoding (image <-> bit array)
