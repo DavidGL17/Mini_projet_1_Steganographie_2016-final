@@ -26,9 +26,9 @@ public class Steganography {
     public static int embedInLSB(int value, boolean m) {
     	int newValue = 0;
     	if (m){
-    		newValue = (value | 0x00000001);
+    		newValue = (value | 0b00000000_00000000_00000000_00000001);
     	} else {
-    		newValue = (value & 0xFFFFFFFE);
+    		newValue = (value & 0b11111111_11111111_11111111_11111110);
     	}
         return newValue;
     }
@@ -39,8 +39,8 @@ public class Steganography {
      * @return A boolean corresponding to the value of {@code value}'s LSB
      */
     public static boolean getLSB(int value) {
-    	value = (value & 0x00000001);
-    	if (value == 0x00000001){
+    	value = (value & 0b00000000_00000000_00000000_00000001);
+    	if (value == 0b00000000_00000000_00000000_00000001){
     		return true;
     	} else {
             return false;
