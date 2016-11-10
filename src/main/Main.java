@@ -30,11 +30,18 @@ public final class Main {
 //		}
 //			testsLineaires("images/TheStarryNight/TheStarryNight.png", "images/TheStarryNight/TheStarryNight.png");
 		int cover[][] = Helper.read("images/images100100.png");
-		String message = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-		System.out.println("message à encoder : "+message);
-		int[][] coverHidden = Steganography.embedText(cover, message);
-		String texteTestTailleIdem = Steganography.revealText(coverHidden);
-		Helper.writeText("Textes/texteTestTailleIdem+1.txt", texteTestTailleIdem);
+		boolean[][] aCacher = new boolean[1][1];
+		aCacher[0][0] = true;
+		int[][] coverHidden = Steganography.embedBWImage(cover, aCacher);
+		Helper.show(coverHidden, "CoverHidden");
+		boolean[][] imageReveleeBW = Steganography.revealBWImage(coverHidden);
+		int[][] ImageRevelee = ImageMessage.toRGB(imageReveleeBW);
+		Helper.show(ImageRevelee, "ImageRevelee");
+//		String message = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+//		System.out.println("message à encoder : "+message);
+//		int[][] coverHidden = Steganography.embedText(cover, message);
+//		String texteTestTailleIdem = Steganography.revealText(coverHidden);
+//		Helper.writeText("Textes/texteTestTailleIdem+1.txt", texteTestTailleIdem);
 		
 	}
 	public static void testsLineaires (String ImageOuCacher, String imageACacher){
