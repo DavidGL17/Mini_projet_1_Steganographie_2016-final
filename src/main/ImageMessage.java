@@ -110,11 +110,10 @@ public final class ImageMessage {
     * and encoding of white otherwise
     */
     public static int getRGB(boolean value) {
-    	int colour;
     	if (value){
-    		return colour = 0x00FFFFFF;
+    		return 0x00ffffff;
     	} else {
-    		return colour = 0x00000000;
+    		return 0x00000000;
     	}
     }
 
