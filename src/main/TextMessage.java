@@ -17,7 +17,7 @@ public class TextMessage {
     public static boolean[] intToBitArray(int value, int bits) {
 		boolean[] binary = new boolean [bits];
     	for (int i = 0; i < bits; ++i){
-    		int lastbit = (value & 0b00000000_00000001);
+    		int lastbit = (value & 0b00000000_00000000_00000000_00000001);
     		if (lastbit == 1){
     			binary[i] = true;
     		} else {
