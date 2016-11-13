@@ -199,7 +199,9 @@ public final class ImageMessage {
     	boolean[] bitArray = new boolean [(bwImage.length*bwImage[0].length)+32*2];
     	int hauteur = bwImage.length;
     	int largeur = bwImage[0].length;
-    	boolean[] hauteurBitArray = TextMessage.intToBitArray(hauteur, Integer.SIZE);
+    	//On fait appelle à la méthode de textMessage permettant de créer un tableau de boolean à partir d'un int (ici pour obtenir la hauteur puis la largeur)
+    	//La valeur k permet d'itterer sur le tableau à une dimension
+    	boolean[] hauteurBitArray = TextMessage.intToBitArray(hauteur, Integer.SIZE); 
     	int k = 0;
     	for (int i=0;i<hauteurBitArray.length;++i){
     		bitArray[k] = hauteurBitArray[i];
@@ -228,6 +230,8 @@ public final class ImageMessage {
     public static boolean[][] bitArrayToImage(boolean[] bitArray) {
     	boolean[] hauteurBitArray = new boolean[Integer.SIZE];
     	boolean[] largeurBitArray = new boolean[Integer.SIZE];
+    	//Cette boucle permet de récupérer la hauteur et la largeur du tableau à une dimension en une fois(auu lieu d'avoir une boucle pour la hauteur 
+    	//et une autre pour la largeur
     	for (int i=0;i<32;++i){
     		hauteurBitArray[i] = bitArray[i];
     		largeurBitArray[i] = bitArray[i+32];
@@ -235,6 +239,8 @@ public final class ImageMessage {
     	int hauteur = TextMessage.bitArrayToInt(hauteurBitArray), largeur = TextMessage.bitArrayToInt(largeurBitArray);
     	boolean[][] bwImage = new boolean[hauteur][largeur];
     	int k = 63;
+    	//On initialise k à 63 pour ne pas reprendre les pixels contenant la hauteur et la largeur (nous aurions pu initilaiser k à 64 si nous avions mis le ++k 
+    	//après "bwImage[i][j] = bitArray[k];")
     	for (int i=0;i<hauteur;++i){
     		for (int j=0;j<largeur;++j){
     			++k;
