@@ -105,7 +105,7 @@ public class Steganography {
     	for (int i = 0; i < cover.length; ++i){
     		for (int j = 0; j < cover[0].length; ++j){
     			if (m < message.length){
-    				coverHidden[i][j]  = embedInLSB(cover[i][j], message[m]);
+    				coverHidden[i][j]  = embedInLSB(cover[i][j], message[m]); // Le message est inséré dans les LSB de l'image
     				++m;
     			} else {
 					coverHidden[i][j] = cover[i][j];
@@ -125,7 +125,7 @@ public class Steganography {
     	boolean[] reveal =  new boolean [cover.length*cover[0].length];  
     	for (int i = 0; i < cover.length; ++i){
     		for (int j = 0; j < cover[0].length; ++j){
-    			reveal[m] = getLSB(cover [i][j]);
+    			reveal[m] = getLSB(cover [i][j]); // Retourne le boolean du LSB de l'image
     			++m;
     		}
     	}
@@ -140,7 +140,7 @@ public class Steganography {
      * @see TextMessage#stringToBitArray(String)
      * @see Steganography#embedBitArray(int[][], boolean[])
      */
-    public static int[][] embedText(int[][] cover, String message) {
+    public static int[][] embedText(int[][] cover, String message) { // Utilise les méthodes existantes pour dissimuler le messsage
     	boolean[] bitMessage = TextMessage.stringToBitArray(message);
     	assertTrue(Utils.isCoverLargeEnough(cover, bitMessage));
     	int[][] hiddenMessage = embedBitArray(cover, bitMessage);			
@@ -153,7 +153,7 @@ public class Steganography {
      * @return The String extracted from the LSB layer of {@code cover}
      * @see TextMessage#bitArrayToString(boolean[])
      */
-    public static String revealText(int[][] cover) {
+    public static String revealText(int[][] cover) { // Utilise les méthodes existantes pour révéler le message
     	boolean[] toreveal = revealBitArray(cover);
     	String revealed = TextMessage.bitArrayToString(toreveal);
     	return revealed;
