@@ -206,6 +206,8 @@ public class Steganography {
 		int m = 0;
 		for (int reduction =0;reduction<cover.length/2;++reduction){
 			if (m<message.length){
+				//Ces quatres boucles permettent de faire le tour de l'image. La boucle ci dessus permet d'à chqua fois racourcir le chemin fais avec les quatres
+				//boucles ci dessous
 				for (int i =0+reduction;i<cover[0].length-reduction;++i){
 					if (m<message.length){
 						coverHidden[reduction][i] = embedInLSB(cover[reduction][i], message[m]);
