@@ -1,4 +1,5 @@
 package main;
+import java.awt.image.ImageFilter;
 import java.util.Scanner;
 
 /**
@@ -29,12 +30,14 @@ public final class Main {
 //			System.out.println();
 //		}
 //			testsLineaires("images/TheStarryNight/TheStarryNight.png", "images/TheStarryNight/TheStarryNight.png");
-		int cover[][] = Helper.read("images/images100100.png");
-		boolean[][] aCacher = new boolean[1][1];
-		aCacher[0][0] = true;
-		int[][] coverHidden = Steganography.embedBWImage(cover, aCacher);
+		int cover[][] = Helper.read("images/TheStarryNight/TheStarryNight.png");
+		int aCacherRGB[][] = Helper.read("images/images100100.png");
+		Helper.show(cover, "Cover");
+		Helper.show(aCacherRGB, "a cacher");
+		boolean aCacher[][] = fromRGBtoBW(aCacherRGB, 117);
+		int[][] coverHidden = Steganography.embedSpiralImage(cover, aCacher);
 		Helper.show(coverHidden, "CoverHidden");
-		boolean[][] imageReveleeBW = Steganography.revealBWImage(coverHidden);
+		boolean[][] imageReveleeBW = Steganography.revealSpiralImage(coverHidden);
 		int[][] ImageRevelee = ImageMessage.toRGB(imageReveleeBW);
 		Helper.show(ImageRevelee, "ImageRevelee");
 //		String message = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";

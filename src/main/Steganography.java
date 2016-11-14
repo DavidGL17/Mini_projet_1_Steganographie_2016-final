@@ -207,32 +207,38 @@ public class Steganography {
 		for (int reduction =0;reduction<cover.length/2;++reduction){
 			//Ces quatres boucles permettent de faire le tour de l'image. La boucle ci dessus permet à chaque fois de racourcir le chemin fais avec les 
 			//quatres boucles ci dessous
-			if (m<message.length){
 				for (int i =0+reduction;i<cover[0].length-reduction;++i){
 					if (m<message.length){
 						coverHidden[reduction][i] = embedInLSB(cover[reduction][i], message[m]);
 						++m;
+					} else {
+						coverHidden[reduction][i] = cover[reduction][i];
 					}
 				}
 				for (int j = 1+reduction;j<cover.length-reduction;++j){
 					if (m<message.length){
 						coverHidden[j][cover[0].length-1-reduction] = embedInLSB(cover[j][cover[0].length-1-reduction], message[m]);
 						++m;
+					} else {
+						coverHidden[j][cover[0].length-1-reduction] = cover[j][cover[0].length-1-reduction];
 					}
 				}
 				for (int k = cover[0].length-2-reduction;k>=0+reduction;--k){
 					if (m<message.length){
 						coverHidden[cover.length-1-reduction][k] = embedInLSB(cover[cover.length-1-reduction][k], message[m]);
 						++m;
+					} else {
+						coverHidden[cover.length-1-reduction][k] = cover[cover.length-1-reduction][k];
 					}
 				}
 				for (int l = cover.length-2-reduction;l>0+reduction;--l){
 					if (m<message.length){
 						coverHidden[l][reduction] = embedInLSB(cover[l][reduction], message[m]);
 						++m;
+					} else {
+						coverHidden[l][reduction] = cover[l][reduction];
 					}
 				}
-			}
 		}
         return coverHidden;
     }
