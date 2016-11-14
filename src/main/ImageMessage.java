@@ -230,17 +230,13 @@ public final class ImageMessage {
     public static boolean[][] bitArrayToImage(boolean[] bitArray) {
     	boolean[] hauteurBitArray = new boolean[Integer.SIZE];
     	boolean[] largeurBitArray = new boolean[Integer.SIZE];
-    	//Cette boucle permet de récupérer la hauteur et la largeur du tableau à une dimension en une fois(auu lieu d'avoir une boucle pour la hauteur 
-    	//et une autre pour la largeur
-    	for (int i=0;i<32;++i){
+    	for (int i=0;i<32;++i){//Cette boucle permet de récupérer la hauteur et la largeur du tableau à une dimension en une fois(au lieu d'avoir une boucle pour la hauteur et une autre pour la largeur)
     		hauteurBitArray[i] = bitArray[i];
     		largeurBitArray[i] = bitArray[i+32];
     	}
     	int hauteur = TextMessage.bitArrayToInt(hauteurBitArray), largeur = TextMessage.bitArrayToInt(largeurBitArray);
     	boolean[][] bwImage = new boolean[hauteur][largeur];
-    	int k = 63;
-    	//On initialise k à 63 pour ne pas reprendre les pixels contenant la hauteur et la largeur (nous aurions pu initilaiser k à 64 si nous avions mis le ++k 
-    	//après "bwImage[i][j] = bitArray[k];")
+    	int k = 63;//On initialise k à 63 pour ne pas reprendre les pixels contenant la hauteur et la largeur (nous aurions pu initilaiser k à 64 si nous avions mis le ++k après "bwImage[i][j] = bitArray[k];")
     	for (int i=0;i<hauteur;++i){
     		for (int j=0;j<largeur;++j){
     			++k;
